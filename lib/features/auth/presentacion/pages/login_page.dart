@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:reparaciones_moka/features/auth/data/repositories/auth_repository.dart';
 import 'package:reparaciones_moka/features/auth/data/services/auth_service.dart';
 import 'package:reparaciones_moka/features/auth/domain/auth_use_case.dart';
-import 'package:reparaciones_moka/features/ordenes/presentacion/ordenes_screen.dart';
+import 'package:reparaciones_moka/features/ordenes/presentacion/pages/ordenes_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class InicioSesionScreen extends StatefulWidget {
-  const InicioSesionScreen({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<InicioSesionScreen> createState() => _InicioSesionScreenState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _InicioSesionScreenState extends State<InicioSesionScreen> {
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _usuarioController = TextEditingController();
@@ -48,7 +49,7 @@ class _InicioSesionScreenState extends State<InicioSesionScreen> {
         if (success) {
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (_) => const OrdenesScreen()),
+            MaterialPageRoute(builder: (_) => const OrdenesPage()),
           );
         }
       } catch (e) {
@@ -157,7 +158,9 @@ class _InicioSesionScreenState extends State<InicioSesionScreen> {
                         width: double.infinity,
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: _iniciarSesion,
+                          onPressed: (){
+                            _iniciarSesion();
+                          },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF78C8AF),
                             foregroundColor: Colors.white,

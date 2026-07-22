@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:reparaciones_moka/features/auth/presentacion/inicio_sesion_screen.dart';
-import 'package:reparaciones_moka/features/ordenes/presentacion/ordenes_screen.dart';
+import 'package:reparaciones_moka/features/auth/presentacion/pages/login_page.dart';
+import 'package:reparaciones_moka/features/ordenes/presentacion/pages/ordenes_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Verificamos si hay token
-  // final prefs = await SharedPreferences.getInstance();
-  // final token = prefs.getString("token");
-  final token = "";
+  final prefs = await SharedPreferences.getInstance();
+  final token = prefs.getString("token");
 
-  runApp(MyApp(isLoggedIn: token != "" ? false : true));
+  runApp(MyApp(isLoggedIn: token != null ? true : false));
 }
 
 class MyApp extends StatelessWidget {
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: .fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: isLoggedIn ? const OrdenesScreen() : const InicioSesionScreen(),
+      home: isLoggedIn ? const OrdenesPage() : const LoginPage(),
     );
   }
 }
@@ -49,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,      
         title: Text(widget.title),
       ),
-      body: InicioSesionScreen(),
+      body: LoginPage(),
     );
   }
 }

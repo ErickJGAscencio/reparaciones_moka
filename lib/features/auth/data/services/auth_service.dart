@@ -6,18 +6,21 @@ class AuthService {
   AuthService(this.dio);
 
   Future<String> login(String username, String password) async {
-    final response = await dio.post(
-      "/auth/login",
-      data: {
-        "username": username,
-        "password": password,
-      },
-    );
+    try {
+      final response = await dio.post(
+        "/auth/login",
+        data: {"username": username, "password": password},
+      );
 
-    if (response.statusCode == 200) {
-      return response.data["access_token"]; 
-    } else {
-      throw Exception("Error al iniciar sesión");
+      return response.data["access_token"];
+    } on DioException catch (e) {
+      
+      if (e.response != null && e.response?.data != null) {
+        final mensaje = e.response?.data["detail"] ?? "Error desconocido";
+        throw Exception(mensaje);
+      } else {
+        throw Exception("Error de conexión con el servidor");
+      }
     }
   }
 }
