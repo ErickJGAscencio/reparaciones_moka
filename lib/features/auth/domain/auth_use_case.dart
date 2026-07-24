@@ -1,3 +1,4 @@
+import 'package:reparaciones_moka/core/auth/user_session.dart';
 import 'package:reparaciones_moka/features/auth/data/repositories/auth_repository.dart';
 
 class LoginUseCase {
@@ -5,7 +6,7 @@ class LoginUseCase {
 
   LoginUseCase(this.repository);
 
-  Future<bool> execute(String username, String password) {
+  Future<UserSession> execute(String username, String password) {
     return repository.login(username, password);
   }
 }

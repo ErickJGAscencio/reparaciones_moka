@@ -1,16 +1,18 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:reparaciones_moka/features/auth/presentacion/providers/auth_provider.dart';
+import 'package:reparaciones_moka/features/ordenes/presentacion/widgets/orden_card.dart';
 import 'package:reparaciones_moka/features/ordenes/data/services/ordenes_service.dart';
 
-class OrdenesPage extends StatefulWidget {
+class OrdenesPage extends ConsumerStatefulWidget {
   const OrdenesPage({super.key});
 
   @override
-  State<OrdenesPage> createState() => _OrdenesPageState();
+  ConsumerState<OrdenesPage> createState() => _OrdenesPageState();
 }
 
-class _OrdenesPageState extends State<OrdenesPage> {
+class _OrdenesPageState extends ConsumerState<OrdenesPage> {
   late OrdenesService ordenesService;
   late Future<List<Map<String, dynamic>>> futureOrdenes;
 
@@ -24,26 +26,16 @@ class _OrdenesPageState extends State<OrdenesPage> {
   }
 
   Future<List<Map<String, dynamic>>> _cargarOrdenes() async {
-    final prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString("token");
+    final authState = ref.read(authProvider);
 
-    if (token == null) {
-      throw Exception("No hay token guardado, inicia sesión primero");
-    }
+    if (authState.session == null) throw Exception("No hay sesion, inicia sesión primero");    
 
-    return await ordenesService.getOrdenes(token);
+    return await ordenesService.getOrdenes(authState.session!.token);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Órdenes"),
-        leading: Icon(Icons.menu),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.notifications)),
-        ],
-      ),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: futureOrdenes,
         builder: (context, snapshot) {
@@ -61,32 +53,10 @@ class _OrdenesPageState extends State<OrdenesPage> {
             itemCount: ordenes.length,
             itemBuilder: (context, index) {
               final orden = ordenes[index];
-              return _buildCard(orden);
+              return OrdenCard(orden: orden);
             },
           );
         },
-      ),
-    );
-  }
-
-  Widget _buildCard(Map<String, dynamic> orden) {
-    final folio = orden["orden_id"].toString();
-    final clienteNombre = orden["cliente"];
-    final equipoInfo = orden['modelo'];
-    final fecha = orden['fecha_ingreso'];
-    final saldo = orden['saldo_a_pagar'];
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-      child: Container(
-        child: Column(
-          children: [
-            Text(folio),
-            Text(clienteNombre["nombre"]),
-            Text('$equipoInfo - $fecha'),
-            Text('Saldo: $saldo'),
-            Icon(Icons.chevron_right),
-          ],
-        ),
       ),
     );
   }

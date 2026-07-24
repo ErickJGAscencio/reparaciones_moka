@@ -1,27 +1,24 @@
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:reparaciones_moka/core/auth/user_session.dart';
+import 'package:reparaciones_moka/features/auth/data/storage/session_storage.dart';
 import '../services/auth_service.dart';
 
 class AuthRepository {
   final AuthService service;
+  final SessionStorage sessionStorage;
 
-  AuthRepository(this.service);
+  AuthRepository(this.service, this.sessionStorage);
 
-  Future<bool> login(String username, String password) async {
-    final token = await service.login(username, password);
-
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString("token", token);
-
-    return true;
+  Future<UserSession> login(String username, String password) async {
+    final session = await service.login(username, password);
+    await sessionStorage.saveSession(session);
+    return session;
   }
 
   Future<void> logout() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove("token");
+    sessionStorage.clearSession();
   }
 
-  Future<String?> getToken() async {
-    final prefs = await SharedPreferences.getInstance();
-    return prefs.getString("token");
+  Future<UserSession?> getCurrentSession() {
+    return sessionStorage.loadSession();
   }
 }

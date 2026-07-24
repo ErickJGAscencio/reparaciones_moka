@@ -24,7 +24,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF78C8AF),
+      backgroundColor: const Color.fromARGB(255, 209, 228, 222),
       body: SafeArea(
         child: Center(
           child: Text('DashboardPage')
