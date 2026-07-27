@@ -19,7 +19,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   bool _ocultarPassword = true;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

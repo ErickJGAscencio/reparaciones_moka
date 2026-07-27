@@ -14,6 +14,12 @@ const navigationItems = [
     icon: Icons.receipt_long_outlined,
     selectedIcon: Icons.receipt_long,
   ),
+  NavigationItem(
+    label: 'Clientes',
+    title: 'Clientes',
+    icon: Icons.group,
+    selectedIcon: Icons.group_outlined,
+  ),
 ];
 
-const appBarTitles = ['Inicio', 'Órdenes'];
+const appBarTitles = ['Inicio', 'Órdenes', 'Clientes'];

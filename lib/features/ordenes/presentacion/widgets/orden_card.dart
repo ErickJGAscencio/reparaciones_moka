@@ -17,22 +17,35 @@ class OrdenCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final folio = orden.id.toString();
-    final fecha = orden.fechaIngreso;
-    final saldo = orden.saldoPendiente;
-    Cliente cliente = orden.cliente;
-    TipoEquipo equipoInfo = orden.tipoEquipo;
     EstadoReparacion estadoReparacion = orden.estadoReparacion;
+    Cliente cliente = orden.cliente;
+    final fecha = orden.fechaIngreso;
+    final modeloEquipo = orden.modelo;
+    final saldo = orden.saldoPendiente;
 
     return Card(
       color: Colors.white,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusGeometry.circular(20)
+      ),
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       child: ListTile(
-        leading: const Icon(Icons.phone_android),
+        leading: Container(
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 228, 234, 255),
+            borderRadius: BorderRadius.circular(10)
+          ),
+          padding: EdgeInsets.all(5),
+          child: const Icon(Icons.phone_android),
+        ),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(folio, style: const TextStyle(fontWeight: FontWeight.bold)),
-            Text(estadoReparacion.nombre, style: const TextStyle(color: Colors.blue)),
+            Text(
+              folio,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            ),
+            _buildPil(estadoReparacion.nombre),
           ],
         ),
         subtitle: Column(
@@ -48,7 +61,7 @@ class OrdenCard extends StatelessWidget {
               ),
             ),
             Text(
-              '${equipoInfo.nombre} - ${_formatoFecha(fecha)}',
+              '$modeloEquipo - ${_formatoFecha(fecha)}',
               style: TextStyle(color: Colors.blueGrey),
             ),
             const SizedBox(height: 4),
@@ -56,11 +69,12 @@ class OrdenCard extends StatelessWidget {
               text: TextSpan(
                 style: const TextStyle(color: Colors.black),
                 children: [
-                  const TextSpan(text: 'Saldo: '),
+                  const TextSpan(text: 'Saldo pendiente: '),
                   TextSpan(
                     text: saldo.toString(),
                     style: const TextStyle(
                       color: Colors.red,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -70,6 +84,17 @@ class OrdenCard extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildPil(String label) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.amber,
+        borderRadius: BorderRadius.circular(50),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+      child: Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
     );
   }
 }
