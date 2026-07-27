@@ -1,4 +1,4 @@
-import 'package:reparaciones_moka/core/auth/user_role.dart';
+import 'package:reparaciones_moka/core/entities/user_role.dart';
 
 class UserSession {
   final int id;
@@ -14,13 +14,13 @@ class UserSession {
     required this.rol,
     required this.token,
   });
-
+  
   factory UserSession.fromJson(Map<String, dynamic> json) {
     return UserSession(
       id: json['id'],
       nombre: json['nombre'],
       username: json['username'],
-      rol: json['rol'],
+      rol: UserRole.fromJson(json['rol']),
       token: json['token'],
     );
   }
@@ -30,7 +30,7 @@ class UserSession {
       'id': id,
       'nombre': nombre,
       'username': username,
-      'rol': rol.toString(),
+      'rol': rol.toJson(),
       'token': token,
     };
   }
