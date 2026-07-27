@@ -53,6 +53,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         ).showSnackBar(SnackBar(content: Text(authState.error!)));
         return;
       }
+      context.go('/dashboard');
     }
   }
 

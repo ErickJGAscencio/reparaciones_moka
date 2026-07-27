@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:reparaciones_moka/core/navigation/app_drawer.dart';
 import 'package:reparaciones_moka/core/navigation/bottom_navigation.dart';
 import 'package:reparaciones_moka/core/navigation/navigation_items.dart';
+import 'package:reparaciones_moka/features/ordenes/presentacion/widgets/orden_form_bottom_sheet.dart';
 
 class AppShell extends StatelessWidget {
   const AppShell({super.key, required this.navigationShell});
@@ -33,6 +34,38 @@ class AppShell extends StatelessWidget {
         },
         items: navigationItems,
       ),
+      floatingActionButton: _buildFab(context),
     );
+  }
+
+  Widget? _buildFab(BuildContext context) {
+    switch (navigationShell.currentIndex) {
+      case 0:
+        return null; //Dashboard
+      case 1:
+        return FloatingActionButton(
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              isDismissible: false,
+              enableDrag: false,
+              useSafeArea: true,
+              // showDragHandle: true,
+              builder: (_) => const OrdenFormBottomSheet(),
+            );
+          },
+          child: const Icon(Icons.add),
+        );
+      case 2:
+        return FloatingActionButton(
+          onPressed: () {
+            //creamos cliente
+          },
+          child: const Icon(Icons.person_add),
+        );
+      default:
+        return null;
+    }
   }
 }

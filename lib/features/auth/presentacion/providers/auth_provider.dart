@@ -21,7 +21,7 @@ class AuthState {
 class AuthNotifier extends Notifier<AuthState> {
   @override
   AuthState build() {
-    Future.microtask(() => loadSession());
+    // Future.microtask(() => loadSession());
     return const AuthState();
   }
 

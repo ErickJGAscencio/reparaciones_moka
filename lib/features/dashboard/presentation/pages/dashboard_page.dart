@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:reparaciones_moka/features/auth/data/repositories/auth_repository.dart';
 import 'package:reparaciones_moka/features/auth/data/services/auth_service.dart';
 import 'package:reparaciones_moka/features/auth/domain/auth_use_case.dart';
-import 'package:reparaciones_moka/features/ordenes/presentacion/pages/ordenes_screen.dart';
+import 'package:reparaciones_moka/features/ordenes/presentacion/pages/ordenes_page.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});

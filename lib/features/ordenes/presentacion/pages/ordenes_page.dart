@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reparaciones_moka/features/ordenes/presentacion/providers/ordenes_provider.dart';
 import 'package:reparaciones_moka/features/ordenes/presentacion/widgets/orden_card.dart';
+import 'package:reparaciones_moka/features/ordenes/presentacion/widgets/orden_form_bottom_sheet.dart';
 
 class OrdenesPage extends ConsumerStatefulWidget {
   const OrdenesPage({super.key});
@@ -22,25 +23,24 @@ class _OrdenesPageState extends ConsumerState<OrdenesPage> {
 
   @override
   Widget build(BuildContext context) {
-    final ordenesState = ref.watch(ordenesProvider);
+    final state = ref.watch(ordenesProvider);
 
-    if (ordenesState.isLoading) {
+    if (state.isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
 
-    if (ordenesState.error != null) {
-      return Center(child: Text(ordenesState.error!));
+    if (state.error != null) {
+      return Center(child: Text(state.error!));
     }
 
-    if (ordenesState.ordenes.isEmpty) {
-      return Center(child: Text("No hay órdenes"));
+    if (state.ordenes.isEmpty) {
+      return const Center(child: Text("No hay órdenes"));
     }
 
     return ListView.builder(
-      itemCount: ordenesState.ordenes.length,
+      itemCount: state.ordenes.length,
       itemBuilder: (context, index) {
-        final orden = ordenesState.ordenes[index];
-        return OrdenCard(orden: orden);
+        return OrdenCard(orden: state.ordenes[index]);
       },
     );
   }

@@ -5,7 +5,7 @@ import 'package:reparaciones_moka/features/auth/presentacion/pages/login_page.da
 import 'package:reparaciones_moka/features/auth/presentacion/pages/splash_page.dart';
 // import 'package:reparaciones_moka/features/auth/presentacion/providers/auth_provider.dart';
 import 'package:reparaciones_moka/features/dashboard/presentation/pages/dashboard_page.dart';
-import 'package:reparaciones_moka/features/ordenes/presentacion/pages/ordenes_screen.dart';
+import 'package:reparaciones_moka/features/ordenes/presentacion/pages/ordenes_page.dart';
 
 final goRouterProvider = Provider<GoRouter>((ref) {
   return GoRouter(

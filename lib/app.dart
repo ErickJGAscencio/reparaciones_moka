@@ -11,7 +11,7 @@ class MyApp extends ConsumerWidget {
       title: 'Reparaciones Moka',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
+          seedColor: Color(0xFF2F775A),
         ),
       ),
       routerConfig: router,
