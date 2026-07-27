@@ -17,6 +17,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool _ocultarPassword = true;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -37,16 +42,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             username: _usuarioController.text,
             password: _passwordController.text,
           );
-      final authState = ref.read(authProvider);
 
-      if (authState.session != null) {
-        context.go('/dashboard');
-      }
+      if (!mounted) return;
+
+      final authState = ref.read(authProvider);
 
       if (authState.error != null) {
         ScaffoldMessenger.of(
           context,
         ).showSnackBar(SnackBar(content: Text(authState.error!)));
+        return;
       }
     }
   }

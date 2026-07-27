@@ -9,9 +9,9 @@ class AuthRepository {
   AuthRepository(this.service, this.sessionStorage);
 
   Future<UserSession> login(String username, String password) async {
-    final session = await service.login(username, password);
-    await sessionStorage.saveSession(session);
-    return session;
+final session = await service.login(username, password);
+await sessionStorage.saveSession(session);
+return session;
   }
 
   Future<void> logout() async {

@@ -21,6 +21,7 @@ class AuthState {
 class AuthNotifier extends Notifier<AuthState> {
   @override
   AuthState build() {
+    Future.microtask(() => loadSession());
     return const AuthState();
   }
 
@@ -34,14 +35,17 @@ class AuthNotifier extends Notifier<AuthState> {
       final loginUseCase = ref.read(loginUseCaseProvider);
 
       final session = await loginUseCase.execute(username, password);
-
       state = state.copyWith(session: session, isLoading: false);
     } catch (e) {
-      state = state.copyWith(
-        isLoading: false,
-        error: e.toString()
-      );
-    } 
+      state = state.copyWith(isLoading: false, error: e.toString());
+    }
+  }
+
+  Future<void> loadSession() async {
+    final repository = ref.read(authRepositoryProvider);
+    final session = await repository.getCurrentSession();
+
+    state = state.copyWith(session: session);
   }
 }
 

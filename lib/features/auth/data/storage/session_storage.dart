@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:reparaciones_moka/core/auth/user_role.dart';
 import 'package:reparaciones_moka/core/auth/user_session.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
