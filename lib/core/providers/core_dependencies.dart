@@ -5,6 +5,10 @@ import 'package:reparaciones_moka/features/clientes/data/repositories/cliente_re
 import 'package:reparaciones_moka/features/clientes/data/services/cliente_service.dart';
 import 'package:reparaciones_moka/features/clientes/domain/repositories/cliente_repository.dart';
 import 'package:reparaciones_moka/features/clientes/domain/usecases/get_clientes_usecase.dart';
+import 'package:reparaciones_moka/features/tipo_equipos/data/repositories/tipos_equipo_repository_impl.dart';
+import 'package:reparaciones_moka/features/tipo_equipos/data/services/tipos_equipo_service.dart';
+import 'package:reparaciones_moka/features/tipo_equipos/domain/repositories/tipos_equipo_repository.dart';
+import 'package:reparaciones_moka/features/tipo_equipos/domain/usecases/get_tipos_equipo_usecase.dart';
 
 final dioProvider = Provider<Dio>((ref) {
   final dio = Dio(
@@ -45,4 +49,17 @@ final clienteRepositoryProvider = Provider<ClienteRepository>((ref) {
 
 final getClienteUseCaseProvider = Provider<GetClientesUseCase>((ref) {
   return GetClientesUseCase(ref.read(clienteRepositoryProvider));
+});
+
+//Tipos Equipo
+final tiposEquipoServiceProvider = Provider<TiposEquipoService>((ref) {
+  return TiposEquipoService(ref.read(dioProvider));
+});
+
+final tiposEquipoRepositoryProvider = Provider<TiposEquipoRepository>((ref) {
+  return TiposEquipoRepositoryImpl(ref.read(tiposEquipoServiceProvider)); 
+});
+
+final getTiposEquipoUseCaseProvider = Provider<GetTiposEquipoUsecase>((ref) {
+  return GetTiposEquipoUsecase(ref.read(tiposEquipoRepositoryProvider));
 });
