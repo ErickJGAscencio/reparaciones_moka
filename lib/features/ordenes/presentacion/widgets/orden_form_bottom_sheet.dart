@@ -18,13 +18,14 @@ class OrdenFormBottomSheet extends ConsumerWidget {
         padding: EdgeInsets.only(
           left: 16,
           right: 16,
-          top: 16,
+          top: 0,
           bottom: MediaQuery.of(context).viewInsets.bottom + 16,
         ),
         child: SizedBox(
-          height: MediaQuery.of(context).size.height * .80,
+          height: MediaQuery.of(context).size.height * .60,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,6 +36,7 @@ class OrdenFormBottomSheet extends ConsumerWidget {
                   ),
                   InkWell(
                     onTap: () {
+                      ref.watch(ordenFormProvider.notifier).reset();
                       Navigator.pop(context);
                     },
                     child: Icon(Icons.cancel_outlined),
@@ -71,13 +73,17 @@ class OrdenFormBottomSheet extends ConsumerWidget {
                   const Spacer(),
 
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF2F775A),
+                      foregroundColor: Colors.white,
+                    ),
                     onPressed: () {
                       if (state.currentStep < 2) {
-                        ref.read(ordenFormProvider.notifier).nextStep();
+                        ref.read(ordenFormProvider.notifier).goToNextStep();
                       }
                     },
                     child: Text(
-                      state.currentStep == 2 ? "Guardar" : "Siguiente",
+                      state.currentStep == 2 ? "Crear órden" : "Siguiente",
                     ),
                   ),
                 ],

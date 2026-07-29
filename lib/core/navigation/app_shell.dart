@@ -48,10 +48,10 @@ class AppShell extends StatelessWidget {
             showModalBottomSheet(
               context: context,
               isScrollControlled: true,
-              isDismissible: false,
-              enableDrag: false,
+              // isDismissible: false,
+              enableDrag: true,
               useSafeArea: true,
-              // showDragHandle: true,
+              showDragHandle: true,
               builder: (_) => const OrdenFormBottomSheet(),
             );
           },
@@ -60,7 +60,7 @@ class AppShell extends StatelessWidget {
       case 2:
         return FloatingActionButton(
           onPressed: () {
-            //creamos cliente
+            
           },
           child: const Icon(Icons.person_add),
         );

@@ -55,7 +55,7 @@ class OrdenFormNotifier extends Notifier<OrdenFormState> {
     state = const OrdenFormState();
   }
 
-  void updateCliente({Cliente? cliente}) {
+  void updateCliente(Cliente cliente) {
     state = state.copyWith(draft: state.draft.copyWith(cliente: cliente));
   }
 
