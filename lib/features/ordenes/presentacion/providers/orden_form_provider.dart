@@ -4,6 +4,7 @@ import 'package:reparaciones_moka/core/entities/estado_equipo.dart';
 import 'package:reparaciones_moka/core/entities/estado_reparacion.dart';
 import 'package:reparaciones_moka/core/entities/tipo_equipo.dart';
 import 'package:reparaciones_moka/features/ordenes/domain/entities/order_draft.dart';
+import 'package:reparaciones_moka/features/tecnicos/data/models/user_model.dart';
 
 class OrdenFormState {
   final int currentStep;
@@ -64,7 +65,8 @@ class OrdenFormNotifier extends Notifier<OrdenFormState> {
     EstadoEquipo? estadoEquipo,
     String? modelo,
     String? serie,
-    String? accesorios,
+    List<String>? accesorios,
+    String? marca
   }) {
     state = state.copyWith(
       draft: state.draft.copyWith(
@@ -73,6 +75,7 @@ class OrdenFormNotifier extends Notifier<OrdenFormState> {
         modelo: modelo,
         serie: serie,
         accesorios: accesorios,
+        marca: marca
       ),
     );
   }
@@ -80,6 +83,7 @@ class OrdenFormNotifier extends Notifier<OrdenFormState> {
   void updateDetalles({
     EstadoReparacion? estadoReparacion,
     String? fallaReporte,
+    UserModel? tecnicoAsignado,
     String? diagnostico,
     double? costo,
     double? anticipo,
@@ -88,6 +92,7 @@ class OrdenFormNotifier extends Notifier<OrdenFormState> {
       draft: state.draft.copyWith(
         estadoReparacion: estadoReparacion,
         fallaReporte: fallaReporte,
+        tecnicoAsignado: tecnicoAsignado,
         diagnostico: diagnostico,
         costo: costo,
         anticipo: anticipo,
@@ -103,11 +108,13 @@ class OrdenFormNotifier extends Notifier<OrdenFormState> {
       case 1:
         return state.draft.tipoEquipo != null &&
             state.draft.estadoEquipo != null &&
-            state.draft.modelo.trim().isNotEmpty;
+            state.draft.modelo.trim().isNotEmpty &&
+            state.draft.marca.trim().isNotEmpty;
 
       case 2:
-        return state.draft.estadoReparacion != null &&
-            state.draft.fallaReporte.trim().isNotEmpty;
+        return state.draft.fallaReporte.trim().isNotEmpty &&
+            state.draft.tecnicoAsignado != null &&
+            state.draft.costo.toString().trim().isNotEmpty;
 
       default:
         return false;

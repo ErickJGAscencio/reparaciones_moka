@@ -61,19 +61,6 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
             ),
 
             ListTile(
-              leading: const Icon(Icons.group, color: Colors.white),
-              title: const Text(
-                'Clientes',
-                style: TextStyle(color: Colors.white),
-              ),
-              onTap: () {
-                context.go('/customers');
-                Navigator.of(context).pop();
-              },
-            ),
-            
-
-            ListTile(
               leading: const Icon(Icons.receipt_long, color: Colors.white),
               title: const Text(
                 'Órdenes',
@@ -81,6 +68,18 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
               ),
               onTap: () {
                 context.go('/orders');
+                Navigator.of(context).pop();
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.group, color: Colors.white),
+              title: const Text(
+                'Clientes',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                context.go('/customers');
                 Navigator.of(context).pop();
               },
             ),
@@ -128,6 +127,18 @@ class _AppDrawerState extends ConsumerState<AppDrawer> {
               leading: const Icon(Icons.receipt, color: Colors.white),
               title: const Text(
                 'Notas y recepción',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                // context.go('/dashboard');
+                Navigator.of(context).pop();
+              },
+            ),
+
+            ListTile(
+              leading: const Icon(Icons.power, color: Colors.white),
+              title: const Text(
+                'Accesorios',
                 style: TextStyle(color: Colors.white),
               ),
               onTap: () {

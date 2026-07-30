@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:reparaciones_moka/features/ordenes/domain/entities/orden.dart';
+import 'package:reparaciones_moka/features/ordenes/presentacion/providers/orden_dependencies.dart';
 import 'package:reparaciones_moka/features/ordenes/presentacion/providers/orden_form_provider.dart';
+import 'package:reparaciones_moka/features/ordenes/presentacion/providers/ordenes_provider.dart';
 import 'package:reparaciones_moka/features/ordenes/presentacion/widgets/orden_stepper.dart';
 import 'package:reparaciones_moka/features/ordenes/presentacion/widgets/steps/cliente_step.dart';
 import 'package:reparaciones_moka/features/ordenes/presentacion/widgets/steps/detalles_step.dart';
@@ -22,7 +25,7 @@ class OrdenFormBottomSheet extends ConsumerWidget {
           bottom: MediaQuery.of(context).viewInsets.bottom + 16,
         ),
         child: SizedBox(
-          height: MediaQuery.of(context).size.height * .60,
+          height: MediaQuery.of(context).size.height * .80,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,9 +40,9 @@ class OrdenFormBottomSheet extends ConsumerWidget {
                   InkWell(
                     onTap: () {
                       ref.watch(ordenFormProvider.notifier).reset();
-                      Navigator.pop(context);
+                      Navigator.of(context).pop();
                     },
-                    child: Icon(Icons.cancel_outlined),
+                    child: Icon(Icons.clear),
                   ),
                 ],
               ),
@@ -48,19 +51,21 @@ class OrdenFormBottomSheet extends ConsumerWidget {
 
               OrdenStepper(currentStep: state.currentStep),
 
-              const SizedBox(height: 30),
-
               // Contenido
               Expanded(
                 child: AnimatedSwitcher(
                   duration: const Duration(milliseconds: 250),
-                  child: _buildStep(state.currentStep),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child:  _buildStep(state.currentStep),
+                  ),
                 ),
               ),
-
               const SizedBox(height: 16),
 
-              Row(
+              Positioned(
+                bottom: 0,
+                child: Row(
                 children: [
                   if (state.currentStep > 0)
                     OutlinedButton(
@@ -77,9 +82,15 @@ class OrdenFormBottomSheet extends ConsumerWidget {
                       backgroundColor: const Color(0xFF2F775A),
                       foregroundColor: Colors.white,
                     ),
-                    onPressed: () {
+                    onPressed: () async {
                       if (state.currentStep < 2) {
                         ref.read(ordenFormProvider.notifier).goToNextStep();
+                      }else if(ref.read(ordenFormProvider.notifier).goToNextStep()){
+                        //Crreamos la orden
+                        print("JJKLL");
+                        final orden = ref.read(ordenFormProvider).draft as Orden;
+                        //await ref.read(ordenesProvider.notifier).createOrder(orden);
+                        Navigator.of(context).pop();
                       }
                     },
                     child: Text(
@@ -87,7 +98,7 @@ class OrdenFormBottomSheet extends ConsumerWidget {
                     ),
                   ),
                 ],
-              ),
+              ))
             ],
           ),
         ),

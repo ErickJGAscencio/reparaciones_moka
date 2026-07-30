@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:reparaciones_moka/core/providers/core_dependencies.dart';
 import 'package:reparaciones_moka/features/ordenes/domain/entities/orden.dart';
 import 'package:reparaciones_moka/features/ordenes/presentacion/providers/orden_dependencies.dart';
 
@@ -51,6 +52,21 @@ class OrdenesNotifier extends Notifier<OrdenesState> {
       state = state.copyWith(
         isLoading: false,
         error: e.toString(),
+      );
+    }
+  }
+
+  Future<void> createOrden(Orden orden) async { 
+    try{
+      state = state.copyWith(
+        isLoading: true,
+        error: null
+      );
+
+      // final useCase = ref.read(getUsersUseCaseProvider)
+    }catch(e){
+      state = state.copyWith(
+        isLoading: false,error: e.toString()
       );
     }
   }

@@ -2,16 +2,19 @@ import 'package:reparaciones_moka/core/entities/cliente.dart';
 import 'package:reparaciones_moka/core/entities/estado_equipo.dart';
 import 'package:reparaciones_moka/core/entities/estado_reparacion.dart';
 import 'package:reparaciones_moka/core/entities/tipo_equipo.dart';
+import 'package:reparaciones_moka/features/tecnicos/data/models/user_model.dart';
 
 class OrdenDraft {
   final Cliente? cliente;
   final TipoEquipo? tipoEquipo;
   final EstadoEquipo? estadoEquipo;
   final EstadoReparacion? estadoReparacion;
+  final UserModel? tecnicoAsignado;
 
+  final String marca;
   final String modelo;
   final String serie;
-  final String accesorios;
+  final List<String> accesorios;
   final String fallaReporte;
   final String diagnostico;
 
@@ -23,9 +26,11 @@ class OrdenDraft {
     this.tipoEquipo,
     this.estadoEquipo,
     this.estadoReparacion,
+    this.tecnicoAsignado,
+    this.marca = '',
     this.modelo = '',
     this.serie = '',
-    this.accesorios = '',
+    this.accesorios = const [],
     this.fallaReporte = '',
     this.diagnostico = '',
     this.costo = 0,
@@ -39,9 +44,11 @@ class OrdenDraft {
     TipoEquipo? tipoEquipo,
     EstadoEquipo? estadoEquipo,
     EstadoReparacion? estadoReparacion,
+    UserModel? tecnicoAsignado,
+    String? marca,
     String? modelo,
     String? serie,
-    String? accesorios,
+    List<String>? accesorios,
     String? fallaReporte,
     String? diagnostico,
     double? costo,
@@ -52,6 +59,8 @@ class OrdenDraft {
       tipoEquipo: tipoEquipo ?? this.tipoEquipo,
       estadoEquipo: estadoEquipo ?? this.estadoEquipo,
       estadoReparacion: estadoReparacion ?? this.estadoReparacion,
+      tecnicoAsignado: tecnicoAsignado ?? this.tecnicoAsignado,
+      marca: marca ?? this.marca,
       modelo: modelo ?? this.modelo,
       serie: serie ?? this.serie,
       accesorios: accesorios ?? this.accesorios,
