@@ -90,10 +90,8 @@ class OrdenFormNotifier extends Notifier<OrdenFormState> {
   }) {
     state = state.copyWith(
       draft: state.draft.copyWith(
-        estadoReparacion: estadoReparacion,
         fallaReporte: fallaReporte,
         tecnicoAsignado: tecnicoAsignado,
-        diagnostico: diagnostico,
         costo: costo,
         anticipo: anticipo,
       ),

@@ -6,6 +6,7 @@ import 'package:reparaciones_moka/features/auth/presentacion/pages/splash_page.d
 import 'package:reparaciones_moka/features/clientes/presentation/pages/clientes_page.dart';
 // import 'package:reparaciones_moka/features/auth/presentacion/providers/auth_provider.dart';
 import 'package:reparaciones_moka/features/dashboard/presentation/pages/dashboard_page.dart';
+import 'package:reparaciones_moka/features/ordenes/presentacion/pages/orden_detail_page.dart';
 import 'package:reparaciones_moka/features/ordenes/presentacion/pages/ordenes_page.dart';
 
 final goRouterProvider = Provider<GoRouter>((ref) {
@@ -80,6 +81,14 @@ final goRouterProvider = Provider<GoRouter>((ref) {
           //   ],
           // ),
         ],
+      ),
+      GoRoute(
+        path: '/orders/:id',
+        name: 'orderDetail',
+        builder: (context, state) {
+          final id = state.pathParameters['id']!;
+          return OrdenDetailPage(id: int.parse(id));
+        },
       ),
     ],
   );

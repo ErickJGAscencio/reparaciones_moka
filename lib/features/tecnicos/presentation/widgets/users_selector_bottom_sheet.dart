@@ -2,27 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reparaciones_moka/features/tecnicos/presentation/providers/users_provider.dart';
 
-class UsersSelectorBottomSheet extends ConsumerStatefulWidget {
+class UsersSelectorBottomSheet extends ConsumerWidget {
   const UsersSelectorBottomSheet({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _UsersSelectorBottomSheetState();
-}
-
-class _UsersSelectorBottomSheetState
-    extends ConsumerState<UsersSelectorBottomSheet> {
-
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() {
-      ref.read(usersProvider.notifier).loadUsers();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(usersProvider);
 
     return SizedBox(

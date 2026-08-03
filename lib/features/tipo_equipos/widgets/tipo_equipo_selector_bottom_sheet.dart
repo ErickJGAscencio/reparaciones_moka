@@ -2,27 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reparaciones_moka/features/tipo_equipos/presentation/providers/tipo_equipo_provider.dart';
 
-class TipoEquipoSelectorBottomSheet extends ConsumerStatefulWidget {
+class TipoEquipoSelectorBottomSheet extends ConsumerWidget {
   const TipoEquipoSelectorBottomSheet({super.key});
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() =>
-      _TipoEquipoSelectorBottomSheetState();
-}
-
-class _TipoEquipoSelectorBottomSheetState
-    extends ConsumerState<TipoEquipoSelectorBottomSheet> {
-  
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() {
-      ref.read(tiposEquipoProvider.notifier).loadTiposEquipo();
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(tiposEquipoProvider);
     
     return SizedBox(

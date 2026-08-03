@@ -2,12 +2,14 @@ import 'package:reparaciones_moka/core/entities/cliente.dart';
 import 'package:reparaciones_moka/core/entities/estado_equipo.dart';
 import 'package:reparaciones_moka/core/entities/estado_reparacion.dart';
 import 'package:reparaciones_moka/core/entities/tipo_equipo.dart';
+import 'package:reparaciones_moka/features/tecnicos/domain/entities/user.dart';
 
 class Orden {
   final int id;
   final String modelo;
   final String serie;
   final String fallaReporte;
+  final String marca;
 
   final double costo;
   final double anticipo;
@@ -17,6 +19,7 @@ class Orden {
   final DateTime fechaIngreso;
   final String diagnostico;
 
+  final User? tecnico;
   final Cliente cliente;
   final TipoEquipo tipoEquipo;
   final EstadoEquipo estadoEquipo;
@@ -27,6 +30,7 @@ class Orden {
     required this.modelo,
     required this.serie,
     required this.fallaReporte,
+    required this.marca,
     required this.costo,
     required this.anticipo,
     required this.saldoPendiente,
@@ -37,5 +41,6 @@ class Orden {
     required this.tipoEquipo,
     required this.estadoEquipo,
     required this.estadoReparacion,
+    this.tecnico,
   });
 }

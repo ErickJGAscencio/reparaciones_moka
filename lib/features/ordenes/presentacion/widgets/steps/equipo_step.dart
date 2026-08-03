@@ -6,25 +6,12 @@ import 'package:reparaciones_moka/features/accesorios/presentation/providers/acc
 import 'package:reparaciones_moka/features/ordenes/presentacion/providers/orden_form_provider.dart';
 import 'package:reparaciones_moka/features/tipo_equipos/widgets/tipo_equipo_selector_bottom_sheet.dart';
 
-class EquipoStep extends ConsumerStatefulWidget {
+class EquipoStep extends ConsumerWidget {
   const EquipoStep({super.key});
 
-  @override
-  ConsumerState<EquipoStep> createState() => _EquipoStepState();
-}
-
-class _EquipoStepState extends ConsumerState<EquipoStep> {
-  @override
-  void initState() {
-    super.initState();
-
-    Future.microtask(() {
-      ref.read(accesoriosProvider.notifier).loadAccesorios();
-    });
-  }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final draft = ref.watch(ordenFormProvider).draft;
 
     return SizedBox(

@@ -21,26 +21,33 @@ class _OrdenesPageState extends ConsumerState<OrdenesPage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final state = ref.watch(ordenesProvider);
+Widget build(BuildContext context) {
+  final state = ref.watch(ordenesProvider);
 
-    if (state.isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
+  if (state.isLoading) {
+    return const Center(child: CircularProgressIndicator());
+  }
 
-    if (state.error != null) {
-      return Center(child: Text(state.error!));
-    }
+  if (state.error != null) {
+    return Center(child: Text(state.error!));
+  }
 
-    if (state.ordenes.isEmpty) {
-      return const Center(child: Text("No hay órdenes"));
-    }
+  if (state.ordenes.isEmpty) {
+    return const Center(child: Text("No hay órdenes"));
+  }
 
-    return ListView.builder(
+  return RefreshIndicator(
+    onRefresh: () async {
+      // Aquí llamas a tu provider para recargar los datos
+      await ref.read(ordenesProvider.notifier).loadOrdenes();
+    },
+    child: ListView.builder(
       itemCount: state.ordenes.length,
       itemBuilder: (context, index) {
         return OrdenCard(orden: state.ordenes[index]);
       },
-    );
-  }
+    ),
+  );
+}
+
 }

@@ -137,7 +137,7 @@ class DetallesStep extends ConsumerWidget {
                           onChanged: (value) {
                             ref
                                 .read(ordenFormProvider.notifier)
-                                .updateEquipo(marca: value);
+                                .updateDetalles(costo: double.tryParse(value));
                           },
                         ),
                       ],
@@ -155,11 +155,11 @@ class DetallesStep extends ConsumerWidget {
                         ),
                         TextFormField(
                           initialValue:
-                              ref.read(ordenFormProvider).draft.costo != 0.0
+                              ref.read(ordenFormProvider).draft.anticipo != 0.0
                               ? ref
                                     .read(ordenFormProvider)
                                     .draft
-                                    .costo
+                                    .anticipo
                                     .toString()
                               : "",
                           decoration: InputDecoration(
@@ -175,7 +175,7 @@ class DetallesStep extends ConsumerWidget {
                           onChanged: (value) {
                             ref
                                 .read(ordenFormProvider.notifier)
-                                .updateEquipo(modelo: value);
+                                .updateDetalles(anticipo: double.tryParse(value));
                           },
                         ),
                       ],
