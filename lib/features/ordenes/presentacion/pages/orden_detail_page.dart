@@ -117,27 +117,85 @@ class _OrdenDetailPageState extends ConsumerState<OrdenDetailPage> {
             ),
 
             const SizedBox(height: 16),
+            Card(
+  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+  elevation: 3,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(12),
+  ),
+  child: Padding(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Icon(Icons.person, color: Colors.blueGrey),
+            const SizedBox(width: 8),
+            Text(
+              'Cliente',
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 12),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Nombre', style: Theme.of(context).textTheme.bodyLarge),
+            Text(
+              orden.cliente.nombre,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ],
+        ),
+        const SizedBox(height: 8),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Técnico asignado',
+                style: Theme.of(context).textTheme.bodyLarge),
+            Text(
+              orden.tecnico?.nombre ?? "-",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+          ],
+        ),
+      ],
+    ),
+  ),
+)
+
+,
+            SizedBox(height: 20),
+
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Cliente',
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                  Row(
+                    children: [
+                      Icon(Icons.settings, color: Colors.blueGrey),
+                      Text(
+                        'Equipo y falla',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Nombre',
+                        'Equipo',
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Text(
-                        '${orden.cliente.nombre}',
+                        '${orden.marca}',
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ],
@@ -146,11 +204,37 @@ class _OrdenDetailPageState extends ConsumerState<OrdenDetailPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Técnico asignado',
+                        'Modelo',
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                       Text(
-                        '${orden.tecnico?.nombre}',
+                        '${orden.modelo}',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Falla reportada',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Text(
+                        '${orden.fallaReporte}',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Accesorios recibidos',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Text(
+                        '${orden.accesorios}',
                         style: Theme.of(context).textTheme.bodyLarge,
                       ),
                     ],
@@ -158,68 +242,64 @@ class _OrdenDetailPageState extends ConsumerState<OrdenDetailPage> {
                 ],
               ),
             ),
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: ListTile(
-                leading: const Icon(Icons.person, color: Colors.blueGrey),
-                title: Text(orden.cliente.nombre),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Teléfono: ${orden.cliente.telefono}"),
-                    Text("Correo: ${orden.cliente.correo}"),
-                  ],
-                ),
-              ),
-            ),
 
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: ListTile(
-                leading: const Icon(Icons.devices, color: Colors.blueGrey),
-                title: Text("${orden.marca} - ${orden.modelo}"),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Serie: ${orden.serie}"),
-                    Text("Problema: ${orden.fallaReporte}"),
-                    Text("Accesorios: ${orden.accesorios.splitMapJoin(', ')}"),
-                  ],
-                ),
-              ),
-            ),
+            SizedBox(height: 20),
 
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: ListTile(
-                leading: const Icon(Icons.build, color: Colors.orange),
-                title: const Text("Diagnóstico técnico"),
-                subtitle: Text(orden.diagnostico),
-              ),
-            ),
-
-            Card(
-              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ListTile(
-                    leading: const Icon(
-                      Icons.attach_money,
-                      color: Colors.green,
-                    ),
-                    title: Text("Costo estimado: \$${orden.costo}"),
+                  Row(
+                    children: [
+                      Icon(Icons.payment, color: Colors.blueGrey),
+                      Text(
+                        'Costos y pago',
+                        style: Theme.of(context).textTheme.titleMedium
+                            ?.copyWith(fontWeight: FontWeight.bold),
+                      ),
+                    ],
                   ),
-                  ListTile(
-                    leading: const Icon(Icons.payments, color: Colors.blue),
-                    title: Text("Anticipo: \$${orden.anticipo}"),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Costo',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Text(
+                        '${orden.costo}',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
                   ),
-                  ListTile(
-                    leading: const Icon(
-                      Icons.account_balance_wallet,
-                      color: Colors.red,
-                    ),
-                    title: Text("Saldo pendiente: \$${orden.saldoPendiente}"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Anticipo',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Text(
+                        '${orden.anticipo}',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
+                  ),
+                  Divider(color: Colors.grey),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Saldo pendiente',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                      Text(
+                        '${orden.saldoPendiente}',
+                        style: Theme.of(context).textTheme.bodyLarge,
+                      ),
+                    ],
                   ),
                 ],
               ),
