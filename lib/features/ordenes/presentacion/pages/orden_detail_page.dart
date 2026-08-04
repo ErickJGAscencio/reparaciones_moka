@@ -171,139 +171,161 @@ class _OrdenDetailPageState extends ConsumerState<OrdenDetailPage> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.settings, color: Colors.blueGrey),
-                      Text(
-                        'Equipo y falla',
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Equipo',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(
-                        '${orden.marca}',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Modelo',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(
-                        '${orden.modelo}',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Falla reportada',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(
-                        '${orden.fallaReporte}',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Accesorios recibidos',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(
-                        '${orden.accesorios}',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                ],
+            Card(
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(Icons.settings, color: Colors.blueGrey),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Equipo y falla',
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Equipo',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          '${orden.marca}',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Modelo',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          '${orden.modelo}',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Falla reportada',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          '${orden.fallaReporte}',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Accesorios recibidos',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          '${orden.accesorios}',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-
-            SizedBox(height: 20),
-
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.payment, color: Colors.blueGrey),
-                      Text(
-                        'Costos y pago',
-                        style: Theme.of(context).textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Costo',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(
-                        '${orden.costo}',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Anticipo',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(
-                        '${orden.anticipo}',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                  Divider(color: Colors.grey),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Saldo pendiente',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                      Text(
-                        '${orden.saldoPendiente}',
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      ),
-                    ],
-                  ),
-                ],
+            Card(
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(Icons.settings, color: Colors.blueGrey),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Costos y pago',
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Costo',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          '\$${orden.costo.toStringAsFixed(2)}',
+                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Anticipo',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          '${orden.anticipo > 0 ? "\$" + orden.anticipo.toStringAsFixed(2) : "Sin anticipo"}',
+                          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ],
+                    ),
+                    Divider(color: Colors.grey),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Saldo pendiente',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          '${orden.saldoPendiente > 0 ? "\$" + orden.saldoPendiente.toStringAsFixed(2) : "Sin saldo pendiente"}',
+                          style: Theme.of(context).textTheme.bodyLarge
+                              ?.copyWith(
+                                fontSize: 20,
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold,
+                              ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
 

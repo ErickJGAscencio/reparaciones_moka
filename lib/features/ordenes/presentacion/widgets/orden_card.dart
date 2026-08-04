@@ -20,6 +20,7 @@ class OrdenCard extends StatelessWidget {
     EstadoReparacion estadoReparacion = orden.estadoReparacion;
     Cliente cliente = orden.cliente;
     final fecha = orden.fechaIngreso;
+    final marca = orden.marca;
     final modeloEquipo = orden.modelo;
     final saldo = orden.saldoPendiente;
 
@@ -68,7 +69,7 @@ class OrdenCard extends StatelessWidget {
                 ),
               ),
               Text(
-                '$modeloEquipo - ${_formatoFecha(fecha)}',
+                '$marca $modeloEquipo - ${_formatoFecha(fecha)}',
                 style: TextStyle(color: Colors.blueGrey),
               ),
               const SizedBox(height: 4),
@@ -78,7 +79,7 @@ class OrdenCard extends StatelessWidget {
                   children: [
                     const TextSpan(text: 'Saldo pendiente: '),
                     TextSpan(
-                      text: saldo.toString(),
+                      text: '\$${saldo.toStringAsFixed(2)}',
                       style: const TextStyle(
                         color: Colors.red,
                         fontSize: 15,
