@@ -118,57 +118,59 @@ class _OrdenDetailPageState extends ConsumerState<OrdenDetailPage> {
 
             const SizedBox(height: 16),
             Card(
-  margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-  elevation: 3,
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(12),
-  ),
-  child: Padding(
-    padding: const EdgeInsets.all(16),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            const Icon(Icons.person, color: Colors.blueGrey),
-            const SizedBox(width: 8),
-            Text(
-              'Cliente',
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
+              margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        const Icon(Icons.person, color: Colors.blueGrey),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Cliente',
+                          style: Theme.of(context).textTheme.titleMedium
+                              ?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Nombre',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          orden.cliente.nombre,
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Técnico asignado',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                        Text(
+                          orden.tecnico?.nombre ?? "-",
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
-          ],
-        ),
-        const SizedBox(height: 12),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Nombre', style: Theme.of(context).textTheme.bodyLarge),
-            Text(
-              orden.cliente.nombre,
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          ],
-        ),
-        const SizedBox(height: 8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Técnico asignado',
-                style: Theme.of(context).textTheme.bodyLarge),
-            Text(
-              orden.tecnico?.nombre ?? "-",
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-          ],
-        ),
-      ],
-    ),
-  ),
-)
-
-,
             SizedBox(height: 20),
 
             Container(
