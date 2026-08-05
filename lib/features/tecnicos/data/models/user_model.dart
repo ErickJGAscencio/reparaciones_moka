@@ -13,7 +13,7 @@ class UserModel extends User {
       id: json['user_id'],
       nombre: json['nombre'],
       username: json['username'],
-      rol: RolModel.fromJson(json['rol']),
+      rol: RolModel(id: json['rol_id'], nombre: json["nombre"]),
     );
   }
 }
