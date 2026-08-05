@@ -314,7 +314,17 @@ class _OrdenDetailPageState extends ConsumerState<OrdenDetailPage>
         "detalle": "Revisión por Ana Pérez",
       },
       {
-        "titulo": "Equipo reparado",
+        "titulo": "Reparación en curso",
+        "fecha": "05 Jul 2026",
+        "detalle": "Reparación por Carlos Díaz",
+      },
+      {
+        "titulo": "Listo para entrega",
+        "fecha": "05 Jul 2026",
+        "detalle": "Reparación por Carlos Díaz",
+      },
+      {
+        "titulo": "Entragado",
         "fecha": "05 Jul 2026",
         "detalle": "Reparación por Carlos Díaz",
       },
