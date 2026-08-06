@@ -257,27 +257,27 @@ class _OrdenDetailPageState extends ConsumerState<OrdenDetailPage>
                 ),
               ),
 
-              //SIGNATURE CANVAS PARA INTEGRAR LA FIRMA ABRIR EN PANTALLA COMPLETA
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Signature(
-                  placeholder: Text(
-                    'Sign here',
-                    style: Theme.of(
-                      context,
-                    ).textTheme.bodyLarge!.copyWith(color: Colors.red),
-                  ),
-                  key: const Key('signature'),
-                  controller: _signatureController,
-                  height: 300,
-                  backgroundColor: Colors.grey[300]!,
-                ),
-              ),
-              Text(
-                _signatureController.isEmpty
-                    ? "Signature pad is empty"
-                    : "Signature pad is not empty",
-              ),
+              // //SIGNATURE CANVAS PARA INTEGRAR LA FIRMA ABRIR EN PANTALLA COMPLETA
+              // Padding(
+              //   padding: const EdgeInsets.all(16.0),
+              //   child: Signature(
+              //     placeholder: Text(
+              //       'Sign here',
+              //       style: Theme.of(
+              //         context,
+              //       ).textTheme.bodyLarge!.copyWith(color: Colors.red),
+              //     ),
+              //     key: const Key('signature'),
+              //     controller: _signatureController,
+              //     height: 300,
+              //     backgroundColor: Colors.grey[300]!,
+              //   ),
+              // ),
+              // Text(
+              //   _signatureController.isEmpty
+              //       ? "Signature pad is empty"
+              //       : "Signature pad is not empty",
+              // ),
             ],
           ),
         ),
