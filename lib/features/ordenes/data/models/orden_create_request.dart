@@ -4,6 +4,7 @@ class OrdenCreateRequest {
   final int clienteId;
   final int tipoEquipoId;
   final int estadoEquipoId;
+  final int tecnicoId;
 
   final String marca;
   final String modelo;
@@ -18,6 +19,7 @@ class OrdenCreateRequest {
     required this.clienteId,
     required this.tipoEquipoId,
     required this.estadoEquipoId,
+    required this.tecnicoId,
     required this.marca,
     required this.modelo,
     required this.serie,
@@ -32,6 +34,7 @@ class OrdenCreateRequest {
       clienteId: draft.cliente?.id ?? 0,
       tipoEquipoId: draft.tipoEquipo?.id ?? 0,
       estadoEquipoId: draft.estadoEquipo?.id ?? 0,
+      tecnicoId: draft.tecnicoAsignado?.id ?? 0,
       marca: draft.marca,
       modelo: draft.modelo,
       serie: draft.serie,
