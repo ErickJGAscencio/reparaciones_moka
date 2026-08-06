@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reparaciones_moka/core/entities/cliente.dart';
 import 'package:reparaciones_moka/core/providers/core_dependencies.dart';
+import 'package:reparaciones_moka/features/clientes/data/models/cliente_create_request.dart';
 
 class ClientesState {
   final List<Cliente> clientes;
@@ -45,6 +46,28 @@ class ClientesNotifier extends Notifier<ClientesState> {
       state = state.copyWith(clientes: clientes, isLoading: false);
     } catch (e) {
       state = state.copyWith(isLoading: false, error: e.toString());
+    }
+  }
+
+  Future<void> createCliente(ClienteCreateRequest cliente) async {
+    try{
+      state= state.copyWith(
+        isLoading: true,
+        error: null
+      );
+
+      final useCase = ref.read(createClienteUseCaseProvider);
+      final response = await useCase.execute(cliente);
+
+      state = state.copyWith(
+        isLoading: false,
+        clientes: [...state.clientes, response]
+      );
+    }catch(e){
+      state = state.copyWith(
+        isLoading: false,
+        error: e.toString()
+      );
     }
   }
 }

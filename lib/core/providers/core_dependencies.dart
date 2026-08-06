@@ -8,6 +8,7 @@ import 'package:reparaciones_moka/features/auth/data/storage/session_storage.dar
 import 'package:reparaciones_moka/features/clientes/data/repositories/cliente_repository_impl.dart';
 import 'package:reparaciones_moka/features/clientes/data/services/cliente_service.dart';
 import 'package:reparaciones_moka/features/clientes/domain/repositories/cliente_repository.dart';
+import 'package:reparaciones_moka/features/clientes/domain/usecases/create_cliente_usecase.dart';
 import 'package:reparaciones_moka/features/clientes/domain/usecases/get_clientes_usecase.dart';
 import 'package:reparaciones_moka/features/tecnicos/data/repositories/user_repository_impl.dart';
 import 'package:reparaciones_moka/features/tecnicos/data/service/users_service.dart';
@@ -63,6 +64,10 @@ final clienteRepositoryProvider = Provider<ClienteRepository>((ref) {
 final getClienteUseCaseProvider = Provider<GetClientesUseCase>((ref) {
   return GetClientesUseCase(ref.read(clienteRepositoryProvider));
 });
+
+final createClienteUseCaseProvider = Provider<CreateClienteUsecase>((ref) {
+  return CreateClienteUsecase(ref.read(clienteRepositoryProvider));
+},);
 
 /// Tipos Equipo-----------------------------------------------------
 final tiposEquipoServiceProvider = Provider<TiposEquipoService>((ref) {

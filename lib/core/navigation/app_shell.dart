@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:reparaciones_moka/core/navigation/app_drawer.dart';
 import 'package:reparaciones_moka/core/navigation/bottom_navigation.dart';
 import 'package:reparaciones_moka/core/navigation/navigation_items.dart';
+import 'package:reparaciones_moka/features/clientes/presentation/widgets/cliente_form_bottom_sheet.dart';
 import 'package:reparaciones_moka/features/ordenes/presentacion/widgets/orden_form_bottom_sheet.dart';
 
 class AppShell extends StatelessWidget {
@@ -60,7 +61,15 @@ class AppShell extends StatelessWidget {
       case 2:
         return FloatingActionButton(
           onPressed: () {
-            
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              // isDismissible: false,
+              enableDrag: true,
+              useSafeArea: true,
+              showDragHandle: true,
+              builder: (_) => const ClienteFormBottomSheet(),
+            );
           },
           child: const Icon(Icons.person_add),
         );

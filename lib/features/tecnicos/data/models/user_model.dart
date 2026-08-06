@@ -9,11 +9,12 @@ class UserModel extends User {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
+    final rol = json['rol'];
     return UserModel(
       id: json['user_id'],
       nombre: json['nombre'],
       username: json['username'],
-      rol: RolModel(id: json['rol_id'], nombre: json["nombre"]),
-    );
+      rol: RolModel(id: rol['rol_id'], nombre: rol["nombre"]),
+    ); 
   }
 }

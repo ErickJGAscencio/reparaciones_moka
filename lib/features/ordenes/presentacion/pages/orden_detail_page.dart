@@ -314,67 +314,78 @@ class _OrdenDetailPageState extends ConsumerState<OrdenDetailPage>
       },
     ];
 
-    return Expanded(
-      child: Card(
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        elevation: 3,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Bitácora de actividad",
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
-              ),
-              const SizedBox(height: 12),
-              Column(
-                children: List.generate(eventos.length, (index) {
-                  final evento = eventos[index];
-                  final esUltimo = index == eventos.length - 1;
+    return Column(
+      children: [
+        Expanded(
+          child: Card(
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            elevation: 3,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Bitácora de actividad",
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Column(
+                    children: List.generate(eventos.length, (index) {
+                      final evento = eventos[index];
+                      final esUltimo = index == eventos.length - 1;
 
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Column(
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          CircleAvatar(
-                            radius: 15,
-                            backgroundColor: const Color(0xFF224D23),
+                          Column(
+                            children: [
+                              CircleAvatar(
+                                radius: 15,
+                                backgroundColor: const Color(0xFF224D23),
+                              ),
+                              if (!esUltimo)
+                                Container(
+                                  width: 2.5,
+                                  height: 40,
+                                  color: const Color.fromARGB(
+                                    255,
+                                    190,
+                                    190,
+                                    190,
+                                  ),
+                                ),
+                            ],
                           ),
-                          if (!esUltimo)
-                            Container(
-                              width: 2.5,
-                              height: 40,
-                              color: const Color.fromARGB(255, 190, 190, 190),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(evento["titulo"]!),
+                                Text(evento["fecha"]!),
+                                Text(evento["detalle"]!),
+                                const SizedBox(height: 16),
+                              ],
                             ),
+                          ),
                         ],
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(evento["titulo"]!),
-                            Text(evento["fecha"]!),
-                            Text(evento["detalle"]!),
-                            const SizedBox(height: 16),
-                          ],
-                        ),
-                      ),
-                    ],
-                  );
-                }),
+                      );
+                    }),
+                  ),
+                  ElevatedButton(onPressed: () {}, child: Text("Avanzar paso")),
+                ],
               ),
-              ElevatedButton(onPressed: () {}, child: Text("Avanzar paso")),
-            ],
+            ),
           ),
         ),
-      ),
+      ],
     );
   }
 
@@ -459,7 +470,7 @@ class _OrdenDetailPageState extends ConsumerState<OrdenDetailPage>
             child: TabBarView(
               controller: _tabController,
               children: [
-                InformationView(orden: orden,),
+                InformationView(orden: orden),
                 _noteView(orden),
                 _trackView(),
               ],
